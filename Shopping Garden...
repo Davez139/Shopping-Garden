@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Garden - Fresh Fruit, Vegetables & Groceries in London</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #2D5A27;
+            --fresh-green: #4A7C43;
+            --light-green: #E8F5E9;
+            --accent-orange: #FF8C42;
+            --accent-yellow: #FFD93D;
+            --text-dark: #1A1A1A;
+            --text-gray: #666666;
+            --bg-cream: #FDFCF8;
+            --white: #FFFFFF;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent-orange);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--bg-cream) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-orange);
+            display: block;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--fresh-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 90, 39, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.6s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            height: 500px;
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .badge-1 {
+            top: 10%;
+            left: -20px;
+        }
+
+        .badge-2 {
+            bottom: 10%;
+            right: -20px;
+            animation-delay: 1.5s;
+        }
+
+        .floating-badge i {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .floating-badge span {
+            font-weight: 600;
+            color: var(--primary-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .experience-badge .years {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .about-content .lead {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-item i {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            margin-top: 0.25rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .opening-hours {
+            background: var(--light-green);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .opening-hours i {
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+
+        .opening-hours div strong {
+            color: var(--primary-green);
+            display: block;
+        }
+
+        /* Products Section */
+        .products {
+            background: var(--bg-cream);
+        }
+
+        .products-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-orange);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--fresh-green);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .product-info p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .add-to-cart {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-green);
+            border: none;
+            color: var(--primary-green);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* Reviews Section */
+        .reviews {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--fresh-green) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .reviews .section-header h2,
+        .reviews .section-header p {
+            color: var(--white);
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-stats {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .rating-big {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--accent-yellow);
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .review-count {
+            opacity: 0.9;
+        }
+
+        .reviews-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .reviews-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .reviews-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .reviews-slider::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .review-card {
+            flex: 0 0 350px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            scroll-snap-align: start;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+        }
+
+        .review-date {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .review-card p {
+            font-style: italic;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.25rem;
+            color: var(--accent-orange);
+            margin-top: 0.25rem;
+        }
+
+        .contact-item div strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item div p {
+            color: var(--text-gray);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-form {
+            background: var(--bg-cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--fresh-green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-orange);
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .delivery-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .delivery-info i {
+            color: var(--accent-orange);
+            margin-right: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-container,
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                height: 300px;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .experience-badge {
+                right: 10px;
+                bottom: -10px;
+                padding: 1rem;
+            }
+
+            .experience-badge .years {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--shadow);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .review-card {
+                flex: 0 0 300px;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                Shopping Garden
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Fresh Fruit, Vegetables <span>& Groceries</span> in London</h1>
+                <p>Your local family-run supermarket bringing the finest quality produce to Green Lanes since 2005. Experience freshness like never before.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">
+                        <i class="fas fa-shopping-basket"></i>
+                        Shop Now
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-phone"></i>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/images.stockcake.com/b252db6a56c93be8b53a37bbcf7c3ddccce9d746.jpg" alt="Fresh colorful vegetables display at Shopping Garden">
+                <div class="floating-badge badge-1">
+                    <i class="fas fa-award"></i>
+                    <span>Quality Assured</span>
+                </div>
+                <div class="floating-badge badge-2">
+                    <i class="fas fa-clock"></i>
+                    <span>Open 7am Daily</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/fa3b069517a1c234eeadf6c180afdd1963a72b10.jpg" alt="Modern supermarket interior with fresh produce">
+                <div class="experience-badge">
+                    <span class="years">19+</span>
+                    <span class="text">Years of<br>Excellence</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Family-Run Supermarket in the Heart of London</h3>
+                <p class="lead">Located at 156 Green Lanes, London N16 9DL, Shopping Garden has been serving our community with dedication and passion for fresh, quality produce.</p>
+                <p>We take pride in being more than just a supermarket – we're a cornerstone of the community. Our friendly staff knows every customer by name, and we're committed to providing the freshest fruit, vegetables, and groceries at competitive prices.</p>
+                
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h4>Family Owned</h4>
+                            <p>Personal service since 2005</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-carrot"></i>
+                        <div>
+                            <h4>Fresh Daily</h4>
+                            <p>Produce delivered every morning</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Friendly Staff</h4>
+                            <p>Always ready to help</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-medal"></i>
+                        <div>
+                            <h4>Top Quality</h4>
+                            <p>Only the best selections</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="opening-hours">
+                    <i class="fas fa-door-open"></i>
+                    <div>
+                        <strong>Opening Hours</strong>
+                        <p>Opens daily at 7:00 AM | 156 Green Lanes, London N16 9DL</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header">
+            <h2>Our Products</h2>
+            <p>Discover our wide range of fresh produce, artisan bakery items, and carefully selected groceries</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Fresh Fruit & Vegetables -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.goodharvestmarket.com/f66e57df4fe94a51bb92b78d505afe2217f5229a.jpg" alt="Fresh organic vegetables">
+                    <span class="product-badge">Fresh Daily</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Fresh Produce</span>
+                    <h3>Organic Vegetable Box</h3>
+                    <p>Seasonal selection of locally sourced organic vegetables, hand-picked for quality.</p>
+                    <div class="product-footer">
+                        <span class="price">£12.99</span>
+                        <button class="add-to-cart" onclick="addToCart('Organic Vegetable Box')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bread & Bakery -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/images.stockcake.com/03bc7519905f0d28de1c04dcd93e019ca38b26b7.jpg" alt="Artisan bread display">
+                    <span class="product-badge">Baked Fresh</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Bakery</span>
+                    <h3>Artisan Sourdough</h3>
+                    <p>Traditional sourdough bread baked fresh every morning using heritage grains.</p>
+                    <div class="product-footer">
+                        <span class="price">£3.49</span>
+                        <button class="add-to-cart" onclick="addToCart('Artisan Sourdough')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Craft Beer -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/www.craftbrewingbusiness.com/0bc1f906845c09d9eb5dfb56c028f9b528e9bc4b.jpg" alt="Craft beer selection">
+                    <span class="product-badge">Local Brews</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Craft Beer</span>
+                    <h3>Craft Beer Selection</h3>
+                    <p>Curated selection of local and international craft beers. Mix and match any 4 for £10.</p>
+                    <div class="product-footer">
+                        <span class="price">£2.99</span>
+                        <button class="add-to-cart" onclick="addToCart('Craft Beer')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Off-Licence -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/eu-images.contentstack.com/2ebd2c6c7720a165f0ea0195883b2c30f62dcf27.jpg" alt="Wine and spirits selection">
+                    <span class="product-badge">Premium</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Off-Licence</span>
+                    <h3>Premium Wine Collection</h3>
+                    <p>Carefully selected wines from around the world. Ask our staff for pairing recommendations.</p>
+                    <div class="product-footer">
+                        <span class="price">£15.99</span>
+                        <button class="add-to-cart" onclick="addToCart('Premium Wine')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Groceries -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/thumbs.dreamstime.com/6d49a54690039e695bab8e8df7b40b65fd4b63a9.jpg" alt="Grocery store aisle">
+                    <span class="product-badge">Essential</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Groceries</span>
+                    <h3>Gourmet Pantry Bundle</h3>
+                    <p>Essential pantry items including pasta, rice, oils, and premium condiments.</p>
+                    <div class="product-footer">
+                        <span class="price">£24.99</span>
+                        <button class="add-to-cart" onclick="addToCart('Gourmet Pantry Bundle')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fresh Fruit -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://kimi-web-img.moonshot.cn/img/c8.alamy.com/35104bdba87e3abb47dd78f734d4aa6ba3b43533.jpg" alt="Fresh fruit display">
+                    <span class="product-badge">Seasonal</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Fresh Fruit</span>
+                    <h3>Seasonal Fruit Basket</h3>
+                    <p>Beautiful assortment of seasonal fruits, perfect for gifting or healthy snacking.</p>
+                    <div class="product-footer">
+                        <span class="price">£18.99</span>
+                        <button class="add-to-cart" onclick="addToCart('Seasonal Fruit Basket')">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Real reviews from our community</p>
+            </div>
+
+            <div class="review-stats">
+                <div class="rating-big">4.3</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="review-count">Based on 118 reviews</p>
+            </div>
+
+            <div class="reviews-slider">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">JD</div>
+                            <div>
+                                <div class="reviewer-name">John D.</div>
+                                <div class="review-date">2 weeks ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>"Family business, great choice of products, good quality bread, fruit, and veg. The staff always remembers my name and order. It's this personal touch that keeps me coming back!"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">SM</div>
+                            <div>
+                                <div class="reviewer-name">Sarah M.</div>
+                                <div class="review-date">1 month ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>"Best off-licence around, great selection of food and craft beer. The recommendations are always spot on. Love supporting this local gem rather than the big chains!"</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">AK</div>
+                            <div>
+                                <div class="reviewer-name">Ahmed K.</div>
+                                <div class="review-date">3 weeks ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>"The freshest vegetables I've found in the area. Open early at 7am which is perfect for my schedule. The organic selection is impressive and reasonably priced."</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">EW</div>
+                            <div>
+                                <div class="reviewer-name">Emma W.</div>
+                                <div class="review-date">1 week ago</div>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                    <p>"Wonderful local shop with amazing bakery section. Their sourdough is the best in London! Staff is incredibly friendly and helpful. Highly recommend!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Visit Us Today</h3>
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">We'd love to see you! Stop by for fresh produce and friendly service.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong>
+                            <p>156 Green Lanes<br>London N16 9DL<br>United Kingdom</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+44 20 7254 0706</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Opening Hours</strong>
+                            <p>Monday - Sunday: 7:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>hello@shoppinggarden.co.uk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2478.638155609858!2d-0.08678468422539468!3d51.57890897964724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761c1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2s156%20Green%20Lanes%2C%20London%20N16%209DL!5e0!3m2!1sen!2suk!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="How can we help you today?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4><i class="fas fa-leaf"></i> Shopping Garden</h4>
+                <p>Your trusted local supermarket in Green Lanes. Fresh produce, friendly service, and community values since 2005.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
+                    <li><a href="#reviews"><i class="fas fa-chevron-right"></i> Reviews</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Product Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Fresh Fruit & Vegetables</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Bread & Bakery</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Off-Licence</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Craft Beer</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Groceries</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Delivery Information</h4>
+                <p>We offer local delivery within 2 miles of our store. Free delivery on orders over £30!</p>
+                <div class="delivery-info">
+                    <i class="fas fa-truck"></i>
+                    <span>Same-day delivery available</span>
+                </div>
+                <div class="delivery-info" style="margin-top: 0.5rem;">
+                    <i class="fas fa-phone"></i>
+                    <span>Call +44 20 7254 0706 to order</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Shopping Garden. All rights reserved. | 156 Green Lanes, London N16 9DL</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" style="display: none; position: fixed; bottom: 30px; right: 30px; background: var(--primary-green); color: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: var(--shadow-lg); z-index: 9999; animation: slideIn 0.3s ease;">
+        <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
+        <span id="toastMessage">Item added to cart!</span>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Add to Cart Functionality
+        function addToCart(productName) {
+            showToast(`${productName} added to cart!`);
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Contact Form Handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            showToast(`Thank you ${name}! Your message has been sent.`);
+            document.getElementById('contactForm').reset();
+        }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.product-card, .feature-item, .contact-item').forEach((el) => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
